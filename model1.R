@@ -1,5 +1,4 @@
 library(rstan)
-library(ggplot2)
 library(gtools)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
@@ -38,34 +37,8 @@ fit = stan(model_code=stan_model, data=data, iter=6000,
 
 # print summary stats and plot of fit
 print(fit)
-plot(fit)
-
-# extract combined chains
-trace = extract(fit, permuted=TRUE)
-names(trace)
-mean(trace$theta[,1])
-mean(trace$theta[,2])
-mean(trace$theta[,3])
-mean(trace$theta[,4])
-mean(trace$theta[,5])
+stan_plot(fit)
 
 # print true theta values
 print(theta)
-
-qplot(trace$theta[,1], geom="density", alpha=I(.5), 
-      main="marginal posterior of theta1", xlab="theta1", 
-      ylab="Density")
-qplot(trace$theta[,2], geom="density", alpha=I(.5), 
-      main="marginal posterior of theta2", xlab="theta2", 
-      ylab="Density")
-qplot(trace$theta[,3], geom="density", alpha=I(.5), 
-      main="marginal posterior of theta3", xlab="theta3", 
-      ylab="Density")
-qplot(trace$theta[,4], geom="density", alpha=I(.5), 
-      main="marginal posterior of theta4", xlab="theta4", 
-      ylab="Density")
-qplot(trace$theta[,5], geom="density", alpha=I(.5), 
-      main="marginal posterior of theta5", xlab="theta5", 
-      ylab="Density")
-
 

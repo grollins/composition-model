@@ -1,5 +1,4 @@
 library(rstan)
-library(ggplot2)
 library(gtools)
 rstan_options(auto_write = TRUE)
 options(mc.cores = parallel::detectCores())
