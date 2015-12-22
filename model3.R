@@ -19,15 +19,9 @@ transformed parameters {
   vector<lower=0.0,upper=1.0>[K] theta2;
   vector<lower=0.0,upper=1.0>[K] theta3;
   vector<lower=0.0,upper=1.0>[K] theta4;
-  theta2[1] <- theta1[1] * k[1];
-  theta2[2] <- theta1[2] * k[2];
-  theta2[3] <- theta1[3] * k[3];
-  theta3[1] <- theta1[1] * k[1] * k[1];
-  theta3[2] <- theta1[2] * k[2] * k[2];
-  theta3[3] <- theta1[3] * k[3] * k[3];
-  theta4[1] <- theta1[1] * k[1] * k[1] * k[1];
-  theta4[2] <- theta1[2] * k[2] * k[2] * k[2];
-  theta4[3] <- theta1[3] * k[3] * k[3] * k[3];
+  theta2 <- theta1 .* k;
+  theta3 <- theta1 .* k .* k;
+  theta4 <- theta1 .* k .* k .* k;
   theta2 <- theta2 / sum(theta2);
   theta3 <- theta3 / sum(theta3);
   theta4 <- theta4 / sum(theta4);
